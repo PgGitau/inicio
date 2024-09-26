@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./main.js" defer></script>
+
+  <!-- SPACE GROTESQUE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
+  <!-- PACIFICO FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- FRAUNCES -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" rel="stylesheet">
+
+  <!-- SACRAMENTO FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+  
+</head>
+<body>
+
+<div class="header">
+    <h1>DAYS REMAINING:</h1>
+  <div id="countdown"></div>
+</div>
+  
+
+  
+  <div id="quote"></div>
+
+  <script>
+    // Set the target date
+    const targetDate = new Date("December 31, 2024 23:59:59").getTime();
+
+    // Update the countdown every second
+    const countdownTimer = setInterval(() => {
+      const now = new Date().getTime(); // Get the current time
+      const timeRemaining = targetDate - now; // Calculate the remaining time
+
+      // Time calculations for days, hours, minutes, and seconds
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      // Display the result in the element with id="countdown"
+      document.getElementById("countdown").innerHTML = 
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+      // If the countdown is over, display some text
+      if (timeRemaining < 0) {
+        clearInterval(countdownTimer);
+        document.getElementById("countdown").innerHTML = "Time's up!";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
