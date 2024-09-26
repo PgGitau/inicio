@@ -17,14 +17,28 @@
     color: #333;
   }
 
-body {
+  body {
+    background-color: #0000003d;
+  }
+
+main {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
-    height: 100svh;
-    background-color: #0000003d;
-    
+    height: 100svh;    
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+nav h1 {
+  font-family: "Fraunces", serif;
+  color: #000000;
 }
 
 .header {

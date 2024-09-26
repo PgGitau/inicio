@@ -24,20 +24,50 @@
     "Don’t wish it were easier. Wish you were better."
   ];
 
-  // Function to display a random quote each day
-  function displayDailyQuote() {
-    const today = new Date();
-    const startOfYear = new Date(today.getFullYear(), 0, 1);
-    const dayOfYear = Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24));
+ // Function to display a random quote based on the minute
+ function displayMinuteQuote() {
+  const now = new Date();
+  const minute = now.getMinutes(); // Get the current minute
 
-    // Use the day of the year to get a unique quote
-    const quoteIndex = dayOfYear % quotes.length;
+  // Use the current minute to get a unique quote
+  const quoteIndex = minute % quotes.length;
 
-    // Display the quote
-    document.getElementById('quote').innerHTML = quotes[quoteIndex];
-  }
+  // Display the quote
+  document.getElementById('quote').innerHTML = quotes[quoteIndex];
+}
 
-  // Display the daily quote on page load
-  displayDailyQuote();
+// Initial display when the page loads
+displayMinuteQuote();
+
+// Update the quote every minute (60000 milliseconds = 1 minute)
+setInterval(displayMinuteQuote, 60000);
+
+
+
+//  DATE
+  // Set the target date
+  const targetDate = new Date("December 31, 2024 23:59:59").getTime();
+
+  // Update the countdown every second
+  const countdownTimer = setInterval(() => {
+    const now = new Date().getTime(); // Get the current time
+    const timeRemaining = targetDate - now; // Calculate the remaining time
+
+    // Time calculations for days, hours, minutes, and seconds
+    const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+    // Display the result in the element with id="countdown"
+    document.getElementById("countdown").innerHTML = 
+      `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    // If the countdown is over, display some text
+    if (timeRemaining < 0) {
+      clearInterval(countdownTimer);
+      document.getElementById("countdown").innerHTML = "Time's up!";
+    }
+  }, 1000);
 })()
  
